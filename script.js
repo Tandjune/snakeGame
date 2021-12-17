@@ -8,14 +8,14 @@ class SnakePart {
     }
 }
 
-let speed = 5;
+let speed = 3;
 const tileCount = 20;
 const tileSize = canvas.clientHeight / tileCount - 2;
 
 var headX = 10;
 var headY = 10;
 const snakeParts = [];
-var tailLength = 2;
+var tailLength = 1;
 
 var mouseX = 5;
 var mouseY = 5;
@@ -29,6 +29,7 @@ var score = 0;
 var control = 0;
 const sound = new Audio("tone.mp3");
 const sound1 = new Audio("tone1.mp3");
+const sound2 = new Audio("tone2.mp3");
 // game loop
 function drawGame() {
     changeSnakePosition();
@@ -45,7 +46,7 @@ function drawGame() {
     drawMouse();
     drawScore();
 
-    if (numberOfMouse == 3) {
+    if (numberOfMouse == 5) {
         numberOfMouse = 0;
         speed = speed + 1;
     }
@@ -152,6 +153,8 @@ function checkMouseCollision() {
 document.body.addEventListener('keydown', keyDown);
 
 function setControl(control) {
+
+    sound2.play();
 
     // up
     if (control == 38) {
