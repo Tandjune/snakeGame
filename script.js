@@ -21,10 +21,12 @@ var mouseX = 5;
 var mouseY = 5;
 var numberOfMouse = 0;
 
-var xVelocity = 0
+var xVelocity = 0;
 var yVelocity = 0;
 
 var score = 0;
+
+var control = 0;
 const sound = new Audio("tone.mp3");
 const sound1 = new Audio("tone1.mp3");
 // game loop
@@ -49,7 +51,7 @@ function drawGame() {
     }
 
     setTimeout(drawGame, 1000 / speed);
-    console.log(numberOfMouse, speed);
+    console.log(numberOfMouse, speed, control);
 
 
 }
@@ -148,6 +150,39 @@ function checkMouseCollision() {
 }
 
 document.body.addEventListener('keydown', keyDown);
+
+function setControl(control) {
+
+    // up
+    if (control == 38) {
+        if (yVelocity == 1)
+            return;
+        yVelocity = -1;
+        xVelocity = 0;
+    }
+    // down
+    if (control == 40) {
+        if (yVelocity == -1)
+            return;
+        yVelocity = 1;
+        xVelocity = 0;
+    }
+    // left
+    if (control == 37) {
+        if (xVelocity == 1)
+            return;
+        yVelocity = 0;
+        xVelocity = -1;
+    }
+    // right
+    if (control == 39) {
+        if (xVelocity == -1)
+            return;
+        yVelocity = 0;
+        xVelocity = 1;
+    }
+
+}
 
 function keyDown(event) {
 

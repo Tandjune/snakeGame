@@ -19,12 +19,61 @@
         canvas {
             box-shadow: black 20px 10px 50px;
         }
+        
+        .buttons {
+            position: relative;
+            height: 100px;
+            width: 100px;
+            margin: 20px 0;
+        }
+        
+        button {
+            display: block;
+        }
+        
+        #right {
+            height: 23px;
+            width: 50px;
+            position: absolute;
+            left: 100%;
+            top: 60%;
+        }
+        
+        #left {
+            height: 23px;
+            width: 50px;
+            position: absolute;
+            right: 100%;
+            top: 60%;
+        }
+        
+        #up {
+            height: 50px;
+            width: 23px;
+            position: absolute;
+            left: 40%;
+            top: 0%;
+        }
+        
+        #down {
+            height: 50px;
+            width: 23px;
+            position: absolute;
+            left: 40%;
+            top: 100%;
+        }
     </style>
 </head>
 
 <body>
-    <h1>snake</h1>
+    <h1>Snake Game</h1>
     <canvas id="game" width="400" height="400"></canvas>
+    <div class="buttons">
+        <button id="right" onclick="setControl(39)">&rarr;</button>
+        <button id="left" onclick="setControl(37)"> &larr; </button>
+        <button id="up" onclick="setControl(38)"> &uarr; </button>
+        <button id="down" onclick="setControl(40)"> &darr; </button>
+    </div>
     <script src="script.js"></script>
 </body>
 
