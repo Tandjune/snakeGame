@@ -17,18 +17,25 @@
         }
         
         canvas {
-            box-shadow: black 20px 10px 50px;
+            box-shadow: rgb(0, 0, 0)  20px 10px 50px;
         }
         
         .buttons {
             position: relative;
             height: 30px;
             width: 100px;
-            margin: 100px 0;
+            margin-top: 100px;
         }
         
         button {
             display: block;
+        }
+        #reload{
+            display:none ;
+            margin-top: 80px;
+            height: 30px;
+            width: 60px;
+            border-radius: 5px;
         }
         
         #right {
@@ -68,6 +75,7 @@
 <body>
     <h1>Snake Game</h1>
     <canvas id="game" width="400" height="400"></canvas>
+    <button id="reload" onclick="location.reload()"> Replay </button>
     <div class="buttons">
         <button id="right" onclick="setControl(39)">&rarr;</button>
         <button id="left" onclick="setControl(37)"> &larr; </button>

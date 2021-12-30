@@ -1,5 +1,7 @@
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
+const reloadButton = document.querySelector("#reload");
+const controlButtons = document.querySelector(".buttons");
 
 class SnakePart {
     constructor(x, y) {
@@ -8,7 +10,7 @@ class SnakePart {
     }
 }
 
-let speed = 3;
+var speed = 3;
 const tileCount = 20;
 const tileSize = canvas.clientHeight / tileCount - 2;
 
@@ -33,10 +35,15 @@ const sound2 = new Audio("tone2.mp3");
 // game loop
 function drawGame() {
     changeSnakePosition();
-
     var result = isGameOver();
 
     if (result) {
+        document.body.addEventListener("keydown",function(event){
+            if(event.keyCode == 13)
+                location.reload();
+        });
+        reloadButton.style.display = "block";
+        controlButtons.style.display = "none";
         return;
     }
 
@@ -46,13 +53,12 @@ function drawGame() {
     drawMouse();
     drawScore();
 
-    if (numberOfMouse == 5) {
+    if (numberOfMouse == 3) {
         numberOfMouse = 0;
-        speed = speed + 1;
+        speed = speed + 0.5;
     }
 
     setTimeout(drawGame, 1000 / speed);
-    console.log(numberOfMouse, speed, control);
 
 
 }
@@ -113,7 +119,7 @@ function clearScreen() {
 
 function drawSnake() {
 
-    ctx.fillStyle = "#f23d06";
+    ctx.fillStyle = "#dd5b0f";
     for (var i = 0; i < snakeParts.length; i++) {
         var part = snakeParts[i];
         ctx.fillRect(part.x * tileCount, part.y * tileCount, tileSize, tileSize);
