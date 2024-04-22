@@ -55,7 +55,7 @@ function drawGame() {
 
     if (numberOfMouse == 3) {
         numberOfMouse = 0;
-        speed = speed + 0.5;
+        speed = speed + 0.3;
     }
 
     setTimeout(drawGame, 1000 / speed);
