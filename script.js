@@ -27,14 +27,20 @@ var xVelocity = 0;
 var yVelocity = 0;
 
 var score = 0;
+var updated = false;    
+var movChanged = false;
 
 var control = 0;
 const sound = new Audio("tone.mp3");
 const sound1 = new Audio("tone1.mp3");
 const sound2 = new Audio("tone2.mp3");
+
+
 // game loop
 function drawGame() {
-    changeSnakePosition();
+    if(!updated){
+        changeSnakePosition();
+    }
     var result = isGameOver();
 
     if (result) {
@@ -57,10 +63,8 @@ function drawGame() {
         numberOfMouse = 0;
         speed = speed + 0.3;
     }
-
     setTimeout(drawGame, 1000 / speed);
-
-
+    updated = false
 }
 
 function isGameOver() {
@@ -146,7 +150,7 @@ function drawMouse() {
 }
 
 function checkMouseCollision() {
-    if (mouseX === headX && mouseY == headY) {
+    if (mouseX === headX && mouseY === headY) {
         mouseX = Math.floor(Math.random() * tileCount);
         mouseY = Math.floor(Math.random() * tileCount);
         numberOfMouse++;
@@ -158,7 +162,7 @@ function checkMouseCollision() {
 
 document.body.addEventListener('keydown', keyDown);
 
-function setControl(control) {
+/*function setControl(control) {
 
     sound2.play();
 
@@ -191,38 +195,47 @@ function setControl(control) {
         xVelocity = 1;
     }
 
-}
+}*/
 
 function keyDown(event) {
 
     // up
     if (event.keyCode == 38) {
-        if (yVelocity == 1)
+        if (yVelocity == 1 || yVelocity == -1)
             return;
         yVelocity = -1;
         xVelocity = 0;
+        movChanged = true;
     }
     // down
     if (event.keyCode == 40) {
-        if (yVelocity == -1)
+        if (yVelocity == -1 || yVelocity == 1)
             return;
         yVelocity = 1;
         xVelocity = 0;
+        movChanged = true;
     }
     // left
-    if (event.keyCode == 37) {
-        if (xVelocity == 1)
+    if (event.keyCode == 37 ) {
+        if (xVelocity == 1 || xVelocity == -1)
             return;
         yVelocity = 0;
         xVelocity = -1;
+        movChanged = true;
     }
     // right
     if (event.keyCode == 39) {
-        if (xVelocity == -1)
+        if (xVelocity == -1 || xVelocity == 1)
             return;
         yVelocity = 0;
         xVelocity = 1;
+        movChanged = true;
     }
+    
+    if(movChanged){
+        changeSnakePosition();
+    }
+    updated = true
 
 }
 
